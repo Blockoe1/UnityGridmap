@@ -1,7 +1,7 @@
 {
-  "name": "com.placeholder.gridmap",
+  "name": "com.soapcube.gridmap",
   "version": "0.0.1",
-  "displayName": "Unity Gridmap",
+  "displayName": "Gridmap",
   "description": "A 3D Gridmap system for Unity designed to build 3D environments.",
   "unity": "6000.2",
   "unityRelease": "7f2",

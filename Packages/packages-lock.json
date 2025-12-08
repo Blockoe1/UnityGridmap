@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "com.placeholder.gridmap": {
-      "version": "file:com.placeholder.gridmap",
+    "com.soapcube.gridmap": {
+      "version": "file:com.soapcube.gridmap",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
