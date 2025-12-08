@@ -1,15 +1,15 @@
 {
-    "name": "com.placeholder.gridmap",
-    "version": "0.0.1",
-    "displayName": "Unity Gridmap",
-    "description": "A 3D Gridmap system for Unity designed to build 3D environments.",
-    "unity": "6000.2",
-    "unityRelease": "7f2",
-    "documentationUrl": "https://example.com/",
-    "changelogUrl": "https://example.com/changelog.html",
-    "licensesUrl": "https://example.com/licensing.html",
-    "dependencies": {
-        "com.unity.2d.tilemap": "1.0.0",
-        "com.unity.2d.tilemap.extras": "5.0.1"
-    }
+  "name": "com.placeholder.gridmap",
+  "version": "0.0.1",
+  "displayName": "Unity Gridmap",
+  "description": "A 3D Gridmap system for Unity designed to build 3D environments.",
+  "unity": "6000.2",
+  "unityRelease": "7f2",
+  "documentationUrl": "https://example.com/",
+  "changelogUrl": "https://example.com/changelog.html",
+  "licensesUrl": "https://example.com/licensing.html",
+  "dependencies": {
+    "com.unity.2d.tilemap": "1.0.0",
+    "com.unity.2d.tilemap.extras": "5.0.1"
+  }
 }
