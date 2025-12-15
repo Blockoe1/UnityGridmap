@@ -25,6 +25,11 @@ namespace Gridmap
         /// </summary>
         public MeshTileBase[] TilesInChunk { get => tilesInChunk; set => tilesInChunk = value; }
 
+        /// <summary>
+        /// Create a new MeshChunk
+        /// </summary>
+        /// <param name="position">Position of the Chunk, also the position of index 0</param>
+        /// <param name="chunkSize">Size of the chunk, constant for all chunks. All values must be greater than 0</param>
         public MeshChunk(Vector3Int position, Vector3Int chunkSize)
         {
             this.position = position;
@@ -34,6 +39,11 @@ namespace Gridmap
             this.chunkSize = chunkSize;
         }
 
+        /// <summary>
+        /// Gets the tile in this chunk position
+        /// </summary>
+        /// <param name="pos">The position of the mesh inside the chunk</param>
+        /// <returns></returns>
         public MeshTileBase GetTileAtPosition(Vector3Int pos)
         {
             //Wrap around to our tilemap, so we don't get out of range exceptions
