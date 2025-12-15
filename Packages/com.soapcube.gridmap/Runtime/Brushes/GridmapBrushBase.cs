@@ -27,9 +27,9 @@ namespace Gridmap.Brushes
         public override void Paint(GridLayout gridLayout, GameObject brushTarget, Vector3Int position)
         {
             base.Paint(gridLayout, brushTarget, position);
-            // The position is always in XYZ notation relative to the orientation of the grid.  Convert to world
-            // XZY orientation.
-            position = GridmapHelpers.ConvertPosition(position, gridLayout.cellSwizzle);
+            // The position is always in XYZ notation relative to the orientation of the grid.  Convert to the world
+            // ortientation.
+            position = GridmapHelpers.ConvertSwizzleSpace(position, gridLayout.cellSwizzle);
             Debug.Log(position);
         }
 
