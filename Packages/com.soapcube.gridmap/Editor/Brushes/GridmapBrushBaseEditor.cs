@@ -15,10 +15,10 @@ using UnityEngine.Tilemaps;
 
 namespace Gridmap.Brushes.Editor
 {
-    [CustomEditor(typeof(GridmapBrushBase), true)]
+    [CustomEditor(typeof(GridmapBrush), true)]
     public class GridmapBrushBaseEditor : GridBrushEditorBase
     {
-        public GridmapBrushBase targetBrush { get { return target as GridmapBrushBase; } }
+        public GridmapBrush targetBrush { get { return target as GridmapBrush; } }
 
         /// <summary>
         /// The collection of GameObjects that hold tilemaps that this brush can paint on.  
