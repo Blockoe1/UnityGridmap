@@ -64,6 +64,8 @@ namespace Gridmap.Brushes
             // Base BoxFill just runs paint on each position in the bounds.  Causes lag.
             //base.BoxFill(gridLayout, brushTarget, position);
 
+            // Get tilemap reference.
+
             // Loop through all filled positions
             foreach(Vector3Int pos in position.allPositionsWithin)
             {
