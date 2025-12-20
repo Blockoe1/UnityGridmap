@@ -9,7 +9,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeshCombiner : MonoBehaviour
+public class MeshCombiner2 : MonoBehaviour
 {
     [SerializeField] private MeshFilter[] meshes;
 
