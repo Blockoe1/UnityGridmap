@@ -75,7 +75,9 @@ namespace Gridmap.Brushes
             // Base BoxFill just runs paint on each position in the bounds.  Causes lag.
             //base.BoxFill(gridLayout, brushTarget, position);
 
-            // Get tilemap reference.
+            // Get tilemap reference.  Currently, I'm assuming it goes with the tilemap component.
+            if (brushTarget == null) { return; }
+            if (!brushTarget.TryGetComponent(out Gridmap gridmap)) { return; }
 
             // Loop through all filled positions
             foreach(Vector3Int pos in position.allPositionsWithin)
@@ -85,16 +87,22 @@ namespace Gridmap.Brushes
                 Vector3Int swizzPos = GridmapHelpers.ConvertSwizzleSpace(pos, gridLayout.cellSwizzle);
 
                 // Actual painting implementation goes here.
-                Debug.Log(swizzPos);
+                Debug.Log("Painted the tile " + GetMeshTile() + " at position " + swizzPos);
+                gridmap.PlaceTileAtPoint(GetMeshTile(), swizzPos);
             }
 
             // Bake the mesh after all fills.
+            gridmap.BakeMesh(position);
         }
 
         public override void BoxErase(GridLayout gridLayout, GameObject brushTarget, BoundsInt position)
         {
             // Base BoxErase just runs erase on each position in the bounds.  Causes lag.
             //base.BoxErase(gridLayout, brushTarget, position);
+
+            // Get tilemap reference.
+            if (brushTarget == null) { return; }
+            if (!brushTarget.TryGetComponent(out Gridmap gridmap)) { return; }
 
             // Loop through all filled positions
             foreach (Vector3Int pos in position.allPositionsWithin)
@@ -104,10 +112,12 @@ namespace Gridmap.Brushes
                 Vector3Int swizzPos = GridmapHelpers.ConvertSwizzleSpace(pos, gridLayout.cellSwizzle);
 
                 // Actual painting implementation goes here.
-                Debug.Log(swizzPos);
+                Debug.Log("Erased the tile at position " + swizzPos);
+                gridmap.PlaceTileAtPoint(null, swizzPos);
             }
 
             // Bake the mesh after all changes have been made.
+            gridmap.BakeMesh(position);
         }
 
         #endregion

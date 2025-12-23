@@ -14,6 +14,15 @@ namespace Gridmap.Brushes
     [CustomGridBrush(false, true, false, "Gridmap Brush")]
     public class GridmapBrush : GridmapBrushBase
     {
-    
+        [SerializeField] private MeshTileBase testTile;
+
+        /// <summary>
+        /// Gets the currently selected MeshTile from the TilePalette.
+        /// </summary>
+        /// <returns>The selected MeshTile.</returns>
+        protected override MeshTileBase GetMeshTile()
+        {
+            return testTile;
+        }
     }
 }

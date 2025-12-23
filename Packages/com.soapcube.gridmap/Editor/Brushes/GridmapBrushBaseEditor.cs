@@ -59,13 +59,14 @@ namespace Gridmap.Brushes.Editor
         /// </summary>
         public override void OnInspectorGUI()
         {
-            //base.OnInspectorGUI();
+            
             serializedObject.Update();
 
-            EditorGUILayout.PropertyField(brushElevation);
+            //EditorGUILayout.PropertyField(brushElevation);
+            base.OnInspectorGUI();
 
             // Update the position of the tilemap based on the brushElevation.
-            
+
             // Add a space to separate custom data from the default brush properties.
             EditorGUILayout.Space();
             serializedObject.ApplyModifiedProperties();
