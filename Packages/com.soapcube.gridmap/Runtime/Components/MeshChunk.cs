@@ -62,13 +62,13 @@ namespace Gridmap
         /// Adds a tile to the chunk
         /// </summary>
         /// <param name="tile">The tile to be set</param>
-        /// <param name="pos">The position of the tile in the chunk</param>
+        /// <param name="pos">The position of the tile in gridmap space. (Not relative to the chunk)</param>
         public void SetTile(MeshTileBase tile, Vector3Int pos)
         {
             int index = GetTileIndex(pos, chunkSize);
 
             // Debug to prove that adding tiles works.
-            Debug.Log("Set the tile at position " + pos + " in chunk position " + position + " to the tile  " + tile);
+            //Debug.Log("Set the tile at position " + pos + " in chunk position " + position + " to the tile  " + tile);
             TilesInChunk[index] = tile;
         }
 

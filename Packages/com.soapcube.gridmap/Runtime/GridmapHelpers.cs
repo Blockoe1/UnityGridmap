@@ -12,10 +12,6 @@ namespace Gridmap
 {
     public static class GridmapHelpers
     {
-        #region CONSTS
-        public const Grid.CellSwizzle DEFAULT_GRID_NOTATION = GridLayout.CellSwizzle.XZY;
-        #endregion
-
         /// <summary>
         /// Converts a Vector3 position to the correct axes specified by a grid swizzle.
         /// </summary>
@@ -24,7 +20,7 @@ namespace Gridmap
         /// <param name="baseSwizzleMode">The current swizzle mode of the position.</param>
         /// <returns>The position in the specified swizzle mode.</returns>
         public static Vector3Int ConvertSwizzleSpace(Vector3Int position, 
-            Grid.CellSwizzle targetSwizzleMode = DEFAULT_GRID_NOTATION, 
+            Grid.CellSwizzle targetSwizzleMode, 
             Grid.CellSwizzle baseSwizzleMode = Grid.CellSwizzle.XYZ)
         {
             /// Gets the tuple that converts the position from base swizzle spacea into XYZ swizzle space.

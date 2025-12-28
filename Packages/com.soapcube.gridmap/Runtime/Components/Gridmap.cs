@@ -8,9 +8,11 @@
 *****************************************************************************/
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Gridmap
 {
+    [RequireComponent(typeof(Tilemap))]
     public class Gridmap : MonoBehaviour
     {
         /// <summary>
@@ -22,6 +24,18 @@ namespace Gridmap
         /// The chunks in this map
         /// </summary>
         private List<MeshChunk> chunks = new();
+
+        #region Component References
+        [SerializeReference, HideInInspector] private Tilemap tilemap;
+        /// <summary>
+        /// Get Component references automatically on component reset.
+        /// </summary>
+        [ContextMenu("Get Component References")]
+        private void Reset()
+        {
+            tilemap = GetComponent<Tilemap>();
+        }
+        #endregion
 
         /// <summary>
         /// Places a tile at this point, generating a new chunk if there isn't one already
@@ -49,7 +63,7 @@ namespace Gridmap
         /// </summary>
         /// <param name="pos">The position to get the tile at.</param>
         /// <returns>The tile at that position.  Null if no tile.</returns>
-        public MeshTileBase GetTile(Vector3Int pos)
+        public MeshTileBase GetTileAtPoint(Vector3Int pos)
         {
             MeshChunk chunk = GetChunkByPosition(GetChunkPos(pos));
             if (chunk == null) { return null; }
@@ -87,7 +101,17 @@ namespace Gridmap
         #endregion
 
         #region Conversions
-
+        /// <summary>
+        /// Gets the world position of a given cell in the grid.
+        /// </summary>
+        /// <param name="gridPos">The grid position to get the world position of. </param>
+        /// <returns>The center of the grid cell at gridPos in world space.</returns>
+        public Vector3 GridToWorldPosition(Vector3Int gridPos)
+        {
+            //Vector3 worldPos = tilemap.CellToWorld(gridPos);
+            Vector3 worldPos = tilemap.LocalToWorld(gridPos);
+            return worldPos;
+        }
         #endregion
 
         /// <summary>
