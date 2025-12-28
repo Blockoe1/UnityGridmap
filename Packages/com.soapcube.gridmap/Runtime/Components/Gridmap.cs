@@ -1,3 +1,11 @@
+/*****************************************************************************
+// File Name : Gridmap.cs
+// Author : Lucas Fehlberg
+// Creation Date : 12/14/2025
+// Last Modified : 12/28/2025
+//
+// Brief Description : 3D tile based system for creating 3D envirobnments from multiple mesh tiles.
+*****************************************************************************/
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,15 +30,7 @@ namespace Gridmap
         /// <param name="point">The point in grid space where the tile is going</param>
         public void PlaceTileAtPoint(MeshTileBase tile, Vector3Int point)
         {
-            Vector3Int chunkPosition = point;
-
-            //Suprisingly, you can get the index of a Vector3
-            //This function floors this to the position of Tile0 in a chunk
-            for (int index = 0; index < 3; index++)
-            {
-                float thingToFloor = chunkPosition[index] /= chunkSize[index];
-                chunkPosition[index] = Mathf.FloorToInt(thingToFloor) * chunkSize[index];
-            }
+            Vector3Int chunkPosition = GetChunkPos(point);
 
             MeshChunk chunk = GetChunkByPosition(chunkPosition);
             //If the chunk is null, we'll simply make a new chunk and add it to the list
@@ -41,9 +41,22 @@ namespace Gridmap
             }
 
             //Add the tile to the chunk
-            chunk.SetTileInChunk(tile, point - chunkPosition);
+            chunk.SetTile(tile, point - chunkPosition);
         }
 
+        /// <summary>
+        /// Gets the tile at a given position.
+        /// </summary>
+        /// <param name="pos">The position to get the tile at.</param>
+        /// <returns>The tile at that position.  Null if no tile.</returns>
+        public MeshTileBase GetTile(Vector3Int pos)
+        {
+            MeshChunk chunk = GetChunkByPosition(GetChunkPos(pos));
+            if (chunk == null) { return null; }
+            return chunk.GetTile(pos);
+        }
+
+        #region Chunks
         /// <summary>
         /// Gets the chunk at this position
         /// </summary>
@@ -53,6 +66,29 @@ namespace Gridmap
         {
             return chunks.Find(c => c.Position == position);
         }
+
+        /// <summary>
+        /// Gets the position of the chunk that contains a given grid position.
+        /// </summary>
+        /// <param name="gridPos">The grid position to get the chunk position of.</param>
+        /// <returns>The position of the chunk that contains the given grid position.</returns>
+        private Vector3Int GetChunkPos(Vector3Int gridPos)
+        {
+            Vector3Int chunkPosition = gridPos;
+            //Suprisingly, you can get the index of a Vector3
+            //This function floors this to the position of Tile0 in a chunk
+            for (int index = 0; index < 3; index++)
+            {
+                float thingToFloor = chunkPosition[index] / (float)chunkSize[index];
+                chunkPosition[index] = Mathf.FloorToInt(thingToFloor) * chunkSize[index];
+            }
+            return chunkPosition;
+        }
+        #endregion
+
+        #region Conversions
+
+        #endregion
 
         /// <summary>
         /// Bakes the tile mesh information 
